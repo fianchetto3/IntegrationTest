@@ -20,6 +20,7 @@ namespace IntegrationTest
         [Fact]
         public async Task GetProducts()
         {
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "IntegrationTestClient");
             var result = await _httpClient.GetAsync("products");
             _output.WriteLine($"Statuskod: {(int)result.StatusCode} ({result.StatusCode})");
             Assert.Equal(HttpStatusCode.OK, result.StatusCode);
